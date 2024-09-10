@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -28,7 +29,9 @@ const Navbar = () => {
               <li><Link href='/cart'>Cart</Link></li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">GentStyle</a>
+          <Link href='/' className="btn btn-ghost text-xl">
+          {/* <Image width="50px" height='50px' src='../assets/icons/shirt.png'/> */}
+          GentStyle</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="flex gap-5 px-1">
@@ -38,7 +41,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn rounded-none bg-transparent border-white text-white">Sign In</a>
+          <Link href='/sigin' className="btn rounded-none bg-transparent border-white text-white">Sign In</Link>
         </div>
       </nav>
     );
