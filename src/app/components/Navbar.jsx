@@ -4,7 +4,8 @@ import React from 'react';
 
 const Navbar = () => {
     return (
-        <nav className="navbar bg-red-600 text-white">
+        <header className='w-full py-2 bg-red-600 text-white'>
+            <nav className="navbar p-0 mx-auto w-11/12">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -29,7 +30,7 @@ const Navbar = () => {
               <li><Link href='/cart'>Cart</Link></li>
             </ul>
           </div>
-          <Link href='/' className="btn btn-ghost text-xl">
+          <Link href='/' className="btn btn-ghost text-xl p-0">
           <Image width={50} height={50} src='/icons/shirt.png'/>
           GentStyle</Link>
         </div>
@@ -44,6 +45,7 @@ const Navbar = () => {
           <Link href='/sigin' className="btn rounded-none bg-transparent border-white text-white">Sign In</Link>
         </div>
       </nav>
+        </header>
     );
 };
 

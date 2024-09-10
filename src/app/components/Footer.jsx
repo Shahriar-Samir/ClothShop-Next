@@ -4,7 +4,8 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="footer bg-neutral text-neutral-content p-10">
+        <footer className='w-full py-6 bg-neutral text-neutral-content'>
+          <footer className="footer w-11/12 mx-auto">
         <aside className=' flex flex-col items-center'>
         <Link href='/' className="">
         <div className='flex flex-col items-center gap-1'>
@@ -68,6 +69,7 @@ const Footer = () => {
           </div>
         </nav>
       </footer>
+        </footer>
     );
 };
 
