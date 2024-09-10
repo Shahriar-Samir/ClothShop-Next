@@ -30,7 +30,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link href='/' className="btn btn-ghost text-xl">
-          {/* <Image width="50px" height='50px' src='../assets/icons/shirt.png'/> */}
+          <Image width={50} height={50} src='/icons/shirt.png'/>
           GentStyle</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
