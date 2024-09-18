@@ -13,11 +13,14 @@
     "e-commerce": "file:",
     "mongodb": "^6.8.1",
     "next": "14.2.8",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
     "react-toastify": "^10.0.5"
   },
   "devDependencies": {
+    "@types/node": "22.5.5",
+    "@types/react": "18.3.7",
     "daisyui": "^4.12.10",
     "eslint": "^8",
     "eslint-config-next": "14.2.8",
