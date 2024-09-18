@@ -13,11 +13,11 @@ export const authOptions = {
                 password:{}
             },
             async authorize (credentials){
-               const {email,password} = credentials
-                if(!email || !password){
+               const {email,pass} = credentials
+                if(!email || !pass){
                     return null
                 }
-                return true
+                return {email,pass}
             }
         })
     ],

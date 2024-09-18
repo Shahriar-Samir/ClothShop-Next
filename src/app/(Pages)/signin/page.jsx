@@ -1,6 +1,7 @@
 'use client'
 
 import axios from "axios";
+import {signIn} from 'next-auth/react'
 
 const SignIn = () => {
 
@@ -9,14 +10,7 @@ const SignIn = () => {
           const form = e.target
           const email = form.email.value
           const pass = form.pass.value
-          
-          axios.post('http://localhost:3000/Sigin/api',{query:{email,pass}})
-          .then(res=>{
-             console.log('User created successfully ')
-          })
-          .catch((err)=>{
-            console.log(err)
-          })
+          await signIn('credentials',{email,pass,redirect: false})
     }
 
     return (
