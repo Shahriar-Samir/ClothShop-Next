@@ -4,7 +4,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className='w-full py-6 bg-neutral text-neutral-content'>
+        <footer className='w-full py-6 bg-neutral text-neutral-content mt-20'>
           <footer className="footer w-11/12 mx-auto">
         <aside className=' flex flex-col items-center'>
         <Link href='/' className="">
