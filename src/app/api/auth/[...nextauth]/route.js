@@ -5,7 +5,7 @@ export const authOptions = {
     session:{
         strategy:'jwt',
     },
-    secret:'asfd',
+    secret:process.env.NEXT_AUTH_SECRET,
     providers:[
         CredentialsProvider({
             credentials:{
