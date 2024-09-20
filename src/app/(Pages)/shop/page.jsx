@@ -1,27 +1,30 @@
 import axios from "axios";
-
+import Image from "next/image";
+import Link from "next/link";
 
 const Shop = async () => {
    try{
-    let res = await axios.get('http://localhost:3000/shop/api')
-    let products = await res.data
+    const res = await axios.get('http://localhost:3000/shop/api')
+    const products = await res.data
    
     return (
         <main className='w-full'>
             <h1 className='mt-5 text-center text-2xl'>All Products</h1>
             <section className='grid grid-cols-3 w-11/12 mx-auto max-w-[1000px] gap-10 mt-10'>
             {products.map(item=>{
-                    return   <article key={item} className="card bg-base-100 shadow-xl">
+                    return   <article key={item._id} className="card bg-base-100 shadow-xl">
   <figure>
-    <img
+    <Image
       src={item.imageURL}
-      alt="Shoes" />
+      width={1000}
+      height={1000}
+      alt={item.productName} className="w-full h-[300px] object-cover" />
   </figure>
   <div className="card-body">
-    <h2 className="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
+    <h2 className="card-title">{item.productName}</h2>
+    <p>{item.description}</p>
     <div className="card-actions justify-end">
-      <button className="btn btn-primary">Buy Now</button>
+      <Link href={`/shop/productDetails/${item._id}`}><button className="btn btn-primary">Purchase</button></Link>
     </div>
   </div>
 </article>})}
