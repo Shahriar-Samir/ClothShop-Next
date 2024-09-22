@@ -4,11 +4,11 @@ import React from 'react';
 
 const ProductDetails = async ({params}) => {
    const productId = params._id
-   const res = await axios.get(`http://localhost:3000/shop/productDetails/api?id=${productId}`)
+   const res = await axios.get(`http://localhost:3000/api/productDetails?id=${productId}`)
    const productData = res.data
     return (
         <main className='mt-10 mx-auto w-11/12 max-w-[1200px]'>
-            <section className="card lg:card-side rounded-none h-[450px]">
+            <section className="card lg:card-side rounded-none h-[450px] gap-20">
   <figure className='w-1/3 rounded-none'>
     <Image
       width={1000}
@@ -26,7 +26,7 @@ const ProductDetails = async ({params}) => {
     <h2 className='text-lg font-semibold'>Material: {productData.material}</h2>
     <h2 className='text-2xl font-bold text-yellow-500'>${productData.price}</h2>
     <div className="card-actions ">
-      <button className="btn bg-[#DC2626] text-white hover:bg-[#8f1919]">Purchase</button>
+      <button className="btn bg-[#DC2626] text-white hover:bg-[#8f1919]">Add Cart</button>
     </div>
   </div>
 </section>
