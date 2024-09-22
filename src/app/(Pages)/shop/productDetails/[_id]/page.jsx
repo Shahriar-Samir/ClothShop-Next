@@ -8,7 +8,7 @@ const ProductDetails = async ({params}) => {
    const productData = res.data
     return (
         <main className='mt-10 mx-auto w-11/12 max-w-[1200px]'>
-            <section className="card lg:card-side rounded-none ">
+            <section className="card lg:card-side rounded-none h-[450px]">
   <figure className='w-1/3 rounded-none'>
     <Image
       width={1000}
@@ -17,16 +17,16 @@ const ProductDetails = async ({params}) => {
       src={productData.imageURL}
       alt={productData.productName} />
   </figure>
-  <div className="card-body w-1/2">
+  <div className="card-body w-1/2 gap-5 flex flex-col">
     <h2 className="font-bold text-2xl">{productData.productName}</h2>
     <h2 className="font-semibold text-lg">Description: {productData.description}</h2>
-    <p className='text-lg font-semibold'>Category: {productData.category}</p>
-    <p className='text-lg font-semibold'>Size: {productData.size}</p>
-    <p className='text-lg font-semibold'>Color: {productData.color}</p>
-    <p className='text-lg font-semibold'>Material: {productData.material}</p>
-    <p className='text-2xl font-bold text-yellow-500'>${productData.price}</p>
+    <h2 className='text-lg font-semibold'>Category: {productData.category}</h2>
+    <h2 className='text-lg font-semibold'>Size: {productData.size}</h2>
+    <h2 className='text-lg font-semibold'>Color: {productData.color}</h2>
+    <h2 className='text-lg font-semibold'>Material: {productData.material}</h2>
+    <h2 className='text-2xl font-bold text-yellow-500'>${productData.price}</h2>
     <div className="card-actions ">
-      <button className="btn btn-primary">Purchase</button>
+      <button className="btn bg-[#DC2626] text-white hover:bg-[#8f1919]">Purchase</button>
     </div>
   </div>
 </section>
