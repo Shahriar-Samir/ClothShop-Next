@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import 'react-notifications-component/dist/theme.css'
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AuthProvider from '../Services/AuthProvider'
