@@ -1,8 +1,13 @@
+import { getServerSession } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { authOptions } from '../api/auth/[...nextauth]/route';
+import LogoutBtn from './logout'
 
-const Navbar = () => {
+const Navbar = async () => {
+  const session = await getServerSession(authOptions)
+  
     return (
         <header className='w-full py-2 bg-red-600 text-white'>
             <nav className="navbar p-0 mx-auto w-11/12">
@@ -42,7 +47,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link href='/signin' className="btn rounded-none bg-transparent border-white text-white">Sign In</Link>
+          {session?.user?.email? <LogoutBtn/> : <Link href='/signin' className="btn rounded-none bg-transparent border-white text-white">Sign In</Link>}
         </div>
       </nav>
         </header>

@@ -12,7 +12,6 @@ const GET =async (req) => {
         const id = new ObjectId(params.get('id'))
         const product = await productsCollection.findOne({_id:id})
         if(product){
-            console.log(product)
             return NextResponse.json(product,{status:200})
         }
         else{

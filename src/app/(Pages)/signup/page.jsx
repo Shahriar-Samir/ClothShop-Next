@@ -26,7 +26,6 @@ const Signup = () => {
           }
   
           catch(err){
-            console.log(err.message)
             Store.addNotification({
               title: "Authentication Failed",
               message: "User already exist with this email",
@@ -62,7 +61,7 @@ const Signup = () => {
           <input type="password" name='pass' placeholder="password" className="input input-bordered bg-transparent border-white"   required />
         </div>
         <div className="form-control mt-6">
-          <button className="btn bg-transparent text-white">Login</button>
+          <button className="btn bg-transparent text-white">Sign Up</button>
         </div>
       </form>
             </section>
