@@ -1,9 +1,10 @@
 'use client'
 
 import {signIn} from 'next-auth/react'
+import { useRouter } from 'next/navigation';
 
 const SignIn = () => {
-
+      const router = useRouter()
     const submit = async (e)=>{
           e.preventDefault()
           const form = e.target
@@ -11,7 +12,24 @@ const SignIn = () => {
           const pass = form.pass.value
           try{
            const res = await signIn('credentials',{email,pass,redirect: false})
-          return console.log(res)
+            if(res.error){
+              Store.addNotification({
+                title: "Authentication Failed",
+                message: "User already exist with this email",
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                  duration: 3000,
+                  onScreen: true
+                }
+              });
+            }
+            if(!res.error){
+              router.push('/')
+            }
           }
           catch(err){
             Store.addNotification({
