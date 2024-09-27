@@ -12,6 +12,9 @@ const connectDB = async () => {
               strict: true,
               deprecationErrors: true,
             },
+            maxPoolSize: 50,    
+            minPoolSize: 5,     
+            maxIdleTimeMS: 30000,
        
           });
           db = client.db('GentStyle')
