@@ -2,6 +2,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import React from 'react';
 import CartBtns from './CartBtns'
+import Link from 'next/link';
 
 const ProductDetails = async ({params}) => {
    const productId = params._id
@@ -26,7 +27,11 @@ const ProductDetails = async ({params}) => {
     <h2 className='text-lg font-semibold'>Color: {productData.color}</h2>
     <h2 className='text-lg font-semibold'>Material: {productData.material}</h2>
     <h2 className='text-2xl font-bold text-yellow-500'>${productData.price}</h2>
+    <div className="card-actions gap-2 flex-col">
     <CartBtns productData={productData}></CartBtns>
+     <Link href='/cart' className="btn bg-[#DC2626] text-white hover:bg-[#8f1919] w-[300px]" >Go to Cart</Link>
+   </div>
+
   </div>
 </section>
         </main>
