@@ -1,6 +1,5 @@
 'use client'
 
-import axios from "axios";
 import {signIn} from 'next-auth/react'
 
 const SignIn = () => {
@@ -10,7 +9,25 @@ const SignIn = () => {
           const form = e.target
           const email = form.email.value
           const pass = form.pass.value
-          await signIn('credentials',{email,pass,redirect: false})
+          try{
+           const res = await signIn('credentials',{email,pass,redirect: false})
+          return console.log(res)
+          }
+          catch(err){
+            Store.addNotification({
+              title: "Authentication Failed",
+              message: "User already exist with this email",
+              type: "danger",
+              insert: "top",
+              container: "top-right",
+              animationIn: ["animate__animated", "animate__fadeIn"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 3000,
+                onScreen: true
+              }
+            });
+          }
     }
 
     return (

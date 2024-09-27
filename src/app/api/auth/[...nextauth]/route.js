@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials'
+import connectDB from "../../../../lib/connectDB";
 
 export const authOptions = {
     session:{
@@ -13,11 +14,24 @@ export const authOptions = {
                 password:{}
             },
             async authorize (credentials){
+               const db = await connectDB()
+               const userCollection = db.collection('users')
                const {email,pass} = credentials
                 if(!email || !pass){
                     return null
                 }
-                return {email,pass}
+                const userExist = await userCollection.findOne({email:email})
+                if(!userExist){
+                    return null
+                }
+                else{
+                    if(pass === userExist.pass){
+                        return {email,pass}
+                    }
+                    return null
+                }
+                    
+
             }
         })
     ],
