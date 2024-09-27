@@ -1,4 +1,5 @@
 'use client'
+import { MdOutlineCancel } from "react-icons/md";
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
@@ -15,15 +16,26 @@ const CartData = () => {
         setCart([])
       }
   },[])
+
+  const removeItem = (item)=>{
+        const newCart = cart.filter(productItem=>{
+            return item.productName !== productItem.productName
+        })
+        localStorage.setItem('cart',JSON.stringify(newCart))
+        setCart(newCart)
+  }
+
+
     return (
-        <section className='flex flex-col gap-5 '>
+        <section className='flex flex-col gap-5 w-2/4'>
         {cart.map(item=>{
-          return <article key={item} className="card items-center p-4 border lg:card-side bg-base-100 h-[200px]">
-          <figure>
+          return <article key={item} className="card items-center p-4 border lg:card-side bg-base-100  w-full justify-center gap-10">
+            <MdOutlineCancel onClick={()=>removeItem(item)}  className="absolute top-2 text-xl right-2"/>
+          <figure className="w-[200px] h-[200px]">
           <Image
     width={1000} 
     height={1000}
-    className='w-[200px] h-[200px] object-cover' 
+    className='w-full h-full object-cover' 
     src={item.imageURL} 
     alt={item.productName} 
 />
@@ -32,7 +44,7 @@ const CartData = () => {
             <h2 className="card-title">{item.productName}</h2>
            <h1>Price: ${item.price}</h1>
             <div className="card-actions justify-end items-center">
-            <CartBtns productData={item}/>
+            <CartBtns productData={item} cartPage ={true}/>
               <button className="btn btn-warning text-white">Purchase</button>
             </div>
           </div>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const CartBtns = ({productData}) => {
+const CartBtns = ({productData,cartPage}) => {
   const cartData = JSON.parse(localStorage.getItem('cart'))
   const productDataArray = cartData? cartData.filter(item=>{
     return item.productName === productData.productName
@@ -41,7 +41,8 @@ const CartBtns = ({productData}) => {
 
 
     const removeItem = ()=>{
-       if(productDataArray.length>0 && itemsCount>0){
+      const minimum = cartPage? 1 : 0
+       if(productDataArray.length>0 && itemsCount>minimum && itemsCount!==1){
         const [cartProData] = productDataArray
         cartProData.amount-=1
         setItemsCount(itemsCount-1)
@@ -50,7 +51,19 @@ const CartBtns = ({productData}) => {
         })
         return localStorage.setItem('cart',JSON.stringify([...newCart,cartProData]))
        }
+       if(productDataArray.length>0 && itemsCount>minimum && itemsCount===1){
+          return removeFullItem(productData)
+       }
     }
+
+    const removeFullItem = (item)=>{
+      const newCart = cartItems.filter(productItem=>{
+          return item.productName !== productItem.productName
+      })
+      localStorage.setItem('cart',JSON.stringify(newCart))
+      setCart(newCart)
+      setItemsCount(0)
+}
     
     return (
       <div className='flex items-center gap-5 border p-2'>
