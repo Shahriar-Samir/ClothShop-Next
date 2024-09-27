@@ -20,9 +20,11 @@ const connectDB = async () => {
           db = client.db('GentStyle')
           return db
     }
-    catch(error){
-        console.error(error);
+    finally {
+      // Ensures that the client will close when you finish/error
+      await client.close();
     }
+
 };
 
 export default connectDB;

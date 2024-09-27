@@ -1,14 +1,15 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const CartBtns = ({productData}) => {
-    const cartData = JSON.parse(localStorage.getItem('cart'))
-    const productDataArray = cartData? cartData.filter(item=>{
-      return item.productName === productData.productName
-    }) : []
-    const [cartItems,setCart] = useState(cartData)
-    const [itemsCount,setItemsCount] = useState(productDataArray.length<1? 0 : productDataArray[0].amount)
+  const cartData = JSON.parse(localStorage.getItem('cart'))
+  const productDataArray = cartData? cartData.filter(item=>{
+    return item.productName === productData.productName
+  }) : []
+  const [cartItems,setCart] = useState(cartData)
+  const [itemsCount,setItemsCount] = useState(productDataArray.length<1? 0 : productDataArray[0].amount)
+
 
     const addItem = ()=>{
         if(!cartItems || cartItems<1){
@@ -23,13 +24,14 @@ const CartBtns = ({productData}) => {
             cartProData.amount+=1
             setItemsCount(itemsCount+1)
             const newCart = cartItems.filter(item=>{
-              return item.productName === cartProData.name
+              return item.productName !== cartProData.productName
             })
+            setCart([...newCart,cartProData])
             return localStorage.setItem('cart',JSON.stringify([...newCart,cartProData]))
            }
            else{
-            productData.amount = 1
             setItemsCount(1)
+            productData.amount = 1
             return localStorage.setItem('cart',JSON.stringify([...cartData,productData]))
            }
 
@@ -43,7 +45,7 @@ const CartBtns = ({productData}) => {
         cartProData.amount-=1
         setItemsCount(itemsCount-1)
         const newCart = cartItems.filter(item=>{
-          return item.productName === cartProData.name
+          return item.productName !== cartProData.productName
         })
         return localStorage.setItem('cart',JSON.stringify([...newCart,cartProData]))
        }
@@ -56,7 +58,7 @@ const CartBtns = ({productData}) => {
       <p>{itemsCount}</p>
       <button onClick={removeItem} className='bg-gray-100 h-[40px] w-[40px] rounded-full'>-</button>
       </div>
-      <button className="btn bg-[#DC2626] text-white hover:bg-[#8f1919] w-[300px]" >Add to Cart</button>
+      <button className="btn bg-[#DC2626] text-white hover:bg-[#8f1919] w-[300px]" >Go to Cart</button>
     </div>
     );
 };
