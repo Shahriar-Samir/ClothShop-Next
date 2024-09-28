@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 
 const PriceDetails = ({cartData}) => {
     const [totalPrice,setTotalPrice] = useState(cartData)
-
     const calculatePrice = ()=>{
         let total = 0
-        for(let product of cartData){
+        if(cartData?.cart){
+          for(let product of cartData.cart){
             const price = Math.ceil(parseFloat(product.price))*product.amount
             total+=price
+        }
         }
         setTotalPrice(total)
     }
