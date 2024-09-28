@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const CartBtns = ({productData,cartPage,updateCart,uid}) => {
-  const cartData = JSON.parse(localStorage.getItem('cart'))
+  const cartData = JSON.parse(localStorage.getItem(uid))
   const productDataArray = cartData? cartData?.cart?.filter(item=>{
         return item.productName === productData.productName
       }) : []
@@ -19,7 +19,7 @@ const CartBtns = ({productData,cartPage,updateCart,uid}) => {
                 productData.position = date.toISOString() 
                 setItemsCount(1)
                 setCart({uid:uid,cart:[productData]})
-                return localStorage.setItem('cart',JSON.stringify({uid:uid,cart:[productData]}))
+                return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:[productData]}))
             }
             if(cartItems?.cart.length>0){
                if(productDataArray.length>0){
@@ -36,13 +36,13 @@ const CartBtns = ({productData,cartPage,updateCart,uid}) => {
                 if(updateCart){
                   updateCart({uid:uid,cart:newCart2}) 
                }
-               return localStorage.setItem('cart',JSON.stringify({uid:uid,cart:newCart2}))
+               return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
               }
                else{
                 setItemsCount(1)
                 productData.amount = 1
                 productData.position = date.toISOString() 
-                return localStorage.setItem('cart',JSON.stringify({uid:uid,cart:[...cartData.cart,productData]}))
+                return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:[...cartData.cart,productData]}))
                }
     
             
@@ -64,7 +64,7 @@ const CartBtns = ({productData,cartPage,updateCart,uid}) => {
         if(updateCart){
           updateCart({uid:uid,cart:newCart2}) 
         } 
-        return localStorage.setItem('cart',JSON.stringify({uid:uid,cart:newCart2}))
+        return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
        }
        if(productDataArray.length>0 && itemsCount>minimum && itemsCount===1){
           return removeFullItem(productData)
@@ -78,7 +78,7 @@ const CartBtns = ({productData,cartPage,updateCart,uid}) => {
       const newCart2 = newCart.sort((a,b)=>{
         return new Date(a.position) - new Date(b.position)
       })
-      localStorage.setItem('cart',JSON.stringify({uid:uid,cart:newCart2}))
+      localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
       setCart({uid:uid,cart:newCart2})
       setItemsCount(0)
 }
@@ -99,7 +99,7 @@ export default CartBtns;
 
 
 // const CartBtns = ({productData,cartPage,updateCart,uid}) =>{
-//   const cartData = JSON.parse(localStorage.getItem('cart'))
+//   const cartData = JSON.parse(localStorage.getItem(uid))
 //   const productDataArray = cartData? cartData?.cart?.filter(item=>{
 //     return item.productName === productData.productName
 //   }) : []
@@ -114,7 +114,7 @@ export default CartBtns;
 //             productData.position = date.toISOString() 
 //             setItemsCount(1)
 //             setCart({uid:uid,cart:[productData]})
-//             return localStorage.setItem('cart',JSON.stringify({uid:uid,cart:[productData]}))
+//             return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:[productData]}))
 //         }
 //         if(cartItems?.cart.length>0){
 //            if(productDataArray.length>0){
@@ -130,13 +130,13 @@ export default CartBtns;
 //             setCart({uid:uid,cart:newCart2})
 //             if(updateCart){
 //               updateCart({uid:uid,cart:newCart2}) 
-//             return localStorage.setItem('cart',JSON.stringify({uid:uid,cart:newCart2}))
+//             return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
 //            }
 //            else{
 //             setItemsCount(1)
 //             productData.amount = 1
 //             productData.position = date.toISOString() 
-//             return localStorage.setItem('cart',JSON.stringify({uid:uid,cart:[...cartData.cart,productData]}))
+//             return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:[...cartData.cart,productData]}))
 //            }
 
 //         }
@@ -158,7 +158,7 @@ export default CartBtns;
 //         if(updateCart){
 //           updateCart({uid:uid,cart:newCart2}) 
 //         } 
-//         return localStorage.setItem('cart',JSON.stringify({uid:uid,cart:newCart2}))
+//         return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
 //        }
 //        if(productDataArray.length>0 && itemsCount>minimum && itemsCount===1){
 //           return removeFullItem(productData)
@@ -172,7 +172,7 @@ export default CartBtns;
 //       const newCart2 = newCart.sort((a,b)=>{
 //         return new Date(a.position) - new Date(b.position)
 //       })
-//       localStorage.setItem('cart',JSON.stringify({uid:uid,cart:newCart2}))
+//       localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
 //       setCart({uid:uid,cart:newCart2})
 //       setItemsCount(0)
 // }

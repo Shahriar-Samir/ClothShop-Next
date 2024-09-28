@@ -10,7 +10,7 @@ const CartData = ({uid}) => {
     const [trigger,setTrigger] = useState(false)
 
   useEffect(()=>{
-      const cartData = JSON.parse(localStorage.getItem('cart'))
+      const cartData = JSON.parse(localStorage.getItem(uid))
       if(cartData){
         setCart(cartData)
       }
@@ -19,7 +19,7 @@ const CartData = ({uid}) => {
       }
   },[])
   useEffect(()=>{
-    const cartData = JSON.parse(localStorage.getItem('cart'))
+    const cartData = JSON.parse(localStorage.getItem(uid))
     if(cartData){
       setCartForPrice(cartData)
     }
@@ -44,7 +44,7 @@ const addItem = (item,itemsCount,setItemsCount)=>{
 
      updateCart({uid:uid,cart:newCart2}) 
 
-  localStorage.setItem('cart',JSON.stringify({uid:uid,cart:newCart2}))
+  localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
 
 }
 
@@ -67,7 +67,7 @@ return new Date(a.position) - new Date(b.position)
 
     updateCart({uid:uid,cart:newCart2}) 
 
-return localStorage.setItem('cart',JSON.stringify({uid:uid,cart:newCart2}))
+return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
 }
 }
 
@@ -80,7 +80,7 @@ return localStorage.setItem('cart',JSON.stringify({uid:uid,cart:newCart2}))
   })
   updateCart({uid:uid,cart:newCart2})
   setCart({uid:uid,cart:newCart2})
-  localStorage.setItem('cart',JSON.stringify({uid:uid,cart:newCart2}))
+  localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
   setTrigger(!trigger)
   }
 
