@@ -26,7 +26,7 @@ export const authOptions = {
                 }
                 else{
                     if(pass === userExist.pass){
-                        return {email,pass}
+                        return {email,pass,uid:userExist._id}
                     }
                     return null
                 }
@@ -35,9 +35,19 @@ export const authOptions = {
             }
         })
     ],
-    callbacks:[
-        
-    ],
+    callbacks:{
+        async jwt({ token, account, user }) {
+
+            if (account) {    
+              token.uid = user.uid
+            }
+            return token
+          },
+          async session({session,user,token}){
+            session.user.uid = token.uid
+            return session
+          }
+},
     pages:{
         signIn:'/signin'
     }

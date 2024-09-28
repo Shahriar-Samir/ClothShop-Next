@@ -2,11 +2,13 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 
+
 const Shop = async () => {
-   try{
+
+  try{
     const res = await axios.get('http://localhost:3000/shop/api')
     const products = await res.data
-   
+
     return (
         <main className='w-full'>
             <h1 className='mt-5 text-center text-2xl'>All Products</h1>

@@ -3,11 +3,16 @@ import Image from 'next/image';
 import React from 'react';
 import CartBtns from './CartBtns'
 import Link from 'next/link';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../../../../api/auth/[...nextauth]/route';
 
 const ProductDetails = async ({params}) => {
+  const session = await getServerSession(authOptions)
+  const uid = session?.user?.uid
    const productId = params._id
    const res = await axios.get(`http://localhost:3000/api/productDetails?id=${productId}`)
    const productData = res.data
+
     return (
         <main className='mt-10 mx-auto w-11/12 max-w-[1200px]'>
             <section className="card lg:card-side rounded-none h-[450px] gap-20">
@@ -28,7 +33,7 @@ const ProductDetails = async ({params}) => {
     <h2 className='text-lg font-semibold'>Material: {productData.material}</h2>
     <h2 className='text-2xl font-bold text-yellow-500'>${productData.price}</h2>
     <div className="card-actions gap-2 flex-col">
-    <CartBtns productData={productData} cartPage={false}></CartBtns>
+    <CartBtns productData={productData} cartPage={false} uid={uid} ></CartBtns>
      <Link href='/cart' className="btn bg-[#DC2626] text-white hover:bg-[#8f1919] w-[300px]" >Go to Cart</Link>
    </div>
 
