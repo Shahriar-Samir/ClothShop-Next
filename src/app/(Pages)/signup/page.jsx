@@ -3,8 +3,8 @@
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { ReactNotifications } from 'react-notifications-component'
-import { Store } from 'react-notifications-component';
+import { toast, ToastContainer } from "react-toastify";
+
 
 
 const Signup = () => {
@@ -26,25 +26,13 @@ const Signup = () => {
           }
   
           catch(err){
-            Store.addNotification({
-              title: "Authentication Failed",
-              message: "User already exist with this email",
-              type: "danger",
-              insert: "top",
-              container: "top-right",
-              animationIn: ["animate__animated", "animate__fadeIn"],
-              animationOut: ["animate__animated", "animate__fadeOut"],
-              dismiss: {
-                duration: 5000,
-                onScreen: true
-              }
-            });
+            toast.error("Something went wrong")
           }
     }
 
     return (
         <main className="w-full flex justify-center items-center h-[100vh]">
-               <ReactNotifications />
+             <ToastContainer/>
            <section className="bg-red-600 text-white p-5 w-[350px]">
             <h1 className="text-2xl font-semibold text-center">Create a new account</h1>
            <form className="card-body text-white" onSubmit={submit}>

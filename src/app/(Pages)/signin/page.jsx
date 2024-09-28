@@ -2,6 +2,7 @@
 
 import {signIn} from 'next-auth/react'
 import { useRouter } from 'next/navigation';
+import { toast, ToastContainer } from 'react-toastify';
 
 const SignIn = () => {
       const router = useRouter()
@@ -13,43 +14,20 @@ const SignIn = () => {
           try{
            const res = await signIn('credentials',{email,pass,redirect: false})
             if(res.error){
-              Store.addNotification({
-                title: "Authentication Failed",
-                message: "User already exist with this email",
-                type: "danger",
-                insert: "top",
-                container: "top-right",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                  duration: 3000,
-                  onScreen: true
-                }
-              });
+              toast.error('Email or password is incorrect')
             }
             if(!res.error){
               router.push('/')
             }
           }
           catch(err){
-            Store.addNotification({
-              title: "Authentication Failed",
-              message: "User already exist with this email",
-              type: "danger",
-              insert: "top",
-              container: "top-right",
-              animationIn: ["animate__animated", "animate__fadeIn"],
-              animationOut: ["animate__animated", "animate__fadeOut"],
-              dismiss: {
-                duration: 3000,
-                onScreen: true
-              }
-            });
+            toast.error('Something went wrong')
           }
     }
 
     return (
         <main className="w-full flex justify-center items-center h-[100vh]">
+          <ToastContainer/>
            <section className="bg-red-600 text-white p-5 w-[350px]">
             <h1 className="text-2xl font-semibold text-center">Create a new account</h1>
            <form className="card-body text-white" onSubmit={submit}>
