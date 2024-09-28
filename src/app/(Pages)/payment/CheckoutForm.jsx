@@ -18,7 +18,7 @@ const CheckoutForm = ({totalPrice,user}) => {
 
 
   useEffect(()=>{
-    axios.post(`/payment/api`, {price:totalPrice? totalPrice : 1})
+    axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/payment/api`, {price:totalPrice? totalPrice : 1})
     .then(res=>{
         setClientSecret(res.data)
     })
