@@ -3,18 +3,20 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const CartBtns = ({productData,cartPage}) => {
+const CartBtns = ({productData,cartPage,updateCart}) => {
   const cartData = JSON.parse(localStorage.getItem('cart'))
   const productDataArray = cartData? cartData.filter(item=>{
     return item.productName === productData.productName
   }) : []
   const [cartItems,setCart] = useState(cartData)
   const [itemsCount,setItemsCount] = useState(productDataArray.length<1? 0 : productDataArray[0].amount)
-
+ 
 
     const addItem = ()=>{
+      const date = new Date()
         if(!cartItems || cartItems<1){
             productData.amount = 1
+            productData.position = date.toISOString() 
             setItemsCount(1)
             setCart([productData])
             return localStorage.setItem('cart',JSON.stringify([productData]))
@@ -27,12 +29,19 @@ const CartBtns = ({productData,cartPage}) => {
             const newCart = cartItems.filter(item=>{
               return item.productName !== cartProData.productName
             })
-            setCart([...newCart,cartProData])
-            return localStorage.setItem('cart',JSON.stringify([...newCart,cartProData]))
+            const newCart2 = [...newCart,cartProData].sort((a,b)=>{
+              return new Date(a.position) - new Date(b.position)
+            })
+            setCart(newCart2)
+            if(updateCart){
+              updateCart(newCart2) 
+            } 
+            return localStorage.setItem('cart',JSON.stringify(newCart2))
            }
            else{
             setItemsCount(1)
             productData.amount = 1
+            productData.position = date.toISOString() 
             return localStorage.setItem('cart',JSON.stringify([...cartData,productData]))
            }
 
@@ -49,7 +58,13 @@ const CartBtns = ({productData,cartPage}) => {
         const newCart = cartItems.filter(item=>{
           return item.productName !== cartProData.productName
         })
-        return localStorage.setItem('cart',JSON.stringify([...newCart,cartProData]))
+        const newCart2 = [...newCart,cartProData].sort((a,b)=>{
+          return new Date(a.position) - new Date(b.position)
+        })
+        if(updateCart){
+          updateCart(newCart2) 
+        } 
+        return localStorage.setItem('cart',JSON.stringify(newCart2))
        }
        if(productDataArray.length>0 && itemsCount>minimum && itemsCount===1){
           return removeFullItem(productData)
@@ -60,8 +75,11 @@ const CartBtns = ({productData,cartPage}) => {
       const newCart = cartItems.filter(productItem=>{
           return item.productName !== productItem.productName
       })
-      localStorage.setItem('cart',JSON.stringify(newCart))
-      setCart(newCart)
+      const newCart2 = newCart.sort((a,b)=>{
+        return new Date(a.position) - new Date(b.position)
+      })
+      localStorage.setItem('cart',JSON.stringify(newCart2))
+      setCart(newCart2)
       setItemsCount(0)
 }
     

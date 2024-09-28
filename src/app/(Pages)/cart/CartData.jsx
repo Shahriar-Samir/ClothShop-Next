@@ -1,12 +1,13 @@
 'use client'
-import { MdOutlineCancel } from "react-icons/md";
 
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import CartBtns from '../shop/productDetails/[_id]/CartBtns';
+import PriceDetails from './PriceDetails'
+import Card from './Card'
 
 const CartData = () => {
     const [cart,setCart] = useState([])
+    const [cartForPrice,setCartForPrice] = useState([])
+
   useEffect(()=>{
       const cartData = JSON.parse(localStorage.getItem('cart'))
       if(cartData){
@@ -16,41 +17,83 @@ const CartData = () => {
         setCart([])
       }
   },[])
+  useEffect(()=>{
+    const cartData = JSON.parse(localStorage.getItem('cart'))
+    if(cartData){
+      setCartForPrice(cartData)
+    }
+    else{
+      setCartForPrice([])
+    }
+},[])
+const addItem = (item,itemsCount,setItemsCount)=>{
+             
+  setItemsCount(itemsCount+1)
+  const newCart = cart.map(product=>{
+            if(product.productName === item.productName){
+                product.amount+=1
+                return product
+            }
+            return product
+  })
+  const newCart2 = newCart.sort((a,b)=>{
+    return new Date(a.position) - new Date(b.position)
+  })
+  setCart(newCart2)
+//   if(updateCart){
+//     updateCart(newCart2) 
+//   } 
+  localStorage.setItem('cart',JSON.stringify(newCart2))
 
-  const removeItem = (item)=>{
-        const newCart = cart.filter(productItem=>{
-            return item.productName !== productItem.productName
-        })
-        localStorage.setItem('cart',JSON.stringify(newCart))
-        setCart(newCart)
+}
+
+
+
+const removeItem = (item,itemsCount,setItemsCount)=>{
+const minimum = 1 
+if(itemsCount>minimum ){
+setItemsCount(itemsCount-1)
+const newCart = cart.map(product=>{
+  if(product.productName === item.productName){
+      product.amount-=1
+      return product
+  }
+  return product
+})
+const newCart2 = newCart.sort((a,b)=>{
+return new Date(a.position) - new Date(b.position)
+})
+//   if(updateCart){
+//     updateCart(newCart2) 
+//   } 
+return localStorage.setItem('cart',JSON.stringify(newCart2))
+}
+}
+
+  const removeWholeItem = (item)=>{
+    const newCart = cart.filter(productItem=>{
+      return item.productName !== productItem.productName
+  })
+  const newCart2 = newCart.sort((a,b)=>{
+    return new Date(a.position) - new Date(b.position)
+  })
+  localStorage.setItem('cart',JSON.stringify(newCart2))
   }
 
+  const updateCart = (cartData)=>{
+    return setCartForPrice(cartData)
+  }
 
     return (
+        <>
         <section className='flex flex-col gap-5 w-2/4'>
         {cart.map(item=>{
-          return <article key={item} className="card items-center p-4 border lg:card-side bg-base-100  w-full justify-center gap-10">
-            <MdOutlineCancel onClick={()=>removeItem(item)}  className="absolute top-2 text-xl right-2"/>
-          <figure className="w-[200px] h-[200px]">
-          <Image
-    width={1000} 
-    height={1000}
-    className='w-full h-full object-cover' 
-    src={item.imageURL} 
-    alt={item.productName} 
-/>
-          </figure>
-          <div className="flex flex-col items justify-center p-0 gap-4">
-            <h2 className="card-title">{item.productName}</h2>
-           <h1>Price: ${item.price}</h1>
-            <div className="card-actions justify-end items-center">
-            <CartBtns productData={item} cartPage ={true}/>
-              <button className="btn btn-warning text-white">Purchase</button>
-            </div>
-          </div>
-        </article>
+          return <Card key={item._key} addItem={addItem} removeItem={removeItem} removeWholeItem={removeWholeItem} item={item}/>
         })}
         </section>
+        <PriceDetails cartData={cartForPrice} addItem={addItem} removeItem={removeItem}/>
+        </>
+        
     );
 };
 
