@@ -16,7 +16,7 @@ const Signup = () => {
           const pass = form.pass.value
           
           try{
-            const res = await axios.post('http://localhost:3000/signup/api',{query:{email,pass}})
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/signup/api`,{query:{email,pass}})
           if(res){
             const res2 = await signIn('credentials',{email,pass,redirect: false})
             if(res2.status === 200){

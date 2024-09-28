@@ -6,7 +6,7 @@ import Link from "next/link";
 const Shop = async () => {
 
   try{
-    const res = await axios.get('http://localhost:3000/shop/api')
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_BASEURL}/shop/api`)
     const products = await res.data
 
     return (

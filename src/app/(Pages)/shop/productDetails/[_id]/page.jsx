@@ -10,7 +10,7 @@ const ProductDetails = async ({params}) => {
   const session = await getServerSession(authOptions)
   const uid = session?.user?.uid
    const productId = params._id
-   const res = await axios.get(`http://localhost:3000/api/productDetails?id=${productId}`)
+   const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/productDetails?id=${productId}`)
    const productData = res.data
 
     return (
