@@ -94,7 +94,7 @@ return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
         <>
         {cart && cart?.cart?.length>0?  <section className='flex flex-col gap-5 w-2/4'>
         {cart.cart.map(item=>{
-          return <Card key={item._key} addItem={addItem} removeItem={removeItem} removeWholeItem={removeWholeItem} item={item} trigger={trigger}/>
+          return <Card key={item._key} addItem={addItem} removeItem={removeItem} removeWholeItem={removeWholeItem} item={item} trigger={trigger} uid={uid}/>
         })}
         </section>:
         <section className='w-2/4 flex justify-center items-center'>

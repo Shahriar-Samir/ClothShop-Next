@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Card = ({item,addItem,removeItem,removeWholeItem,trigger}) => {
+const Card = ({item,addItem,removeItem,removeWholeItem,trigger,uid}) => {
   const [itemsCount,setItemsCount] = useState(item.amount)
   useEffect(()=>{
       setItemsCount(item.amount)
@@ -34,7 +34,7 @@ const Card = ({item,addItem,removeItem,removeWholeItem,trigger}) => {
       <p>{itemsCount}</p>
       <button onClick={()=>removeItem(item,itemsCount,setItemsCount)} className='bg-gray-100 h-[40px] w-[40px] rounded-full'>-</button>
       </div>
-            <Link href={`/payment/${item._id}`}><button className='btn btn-warning text-white w-[150px]'>Purchase</button> </Link>
+            <Link href={`/payment?uid=${uid}&id=${item._id}`}><button className='btn btn-warning text-white w-[150px]'>Purchase</button> </Link>
             </div>
           </div>
         </article>
