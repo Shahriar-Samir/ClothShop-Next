@@ -1,22 +1,19 @@
+'use client'
 import CartBtns from '../shop/productDetails/[_id]/CartBtns';
 import { MdOutlineCancel } from "react-icons/md";
 import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
-const Card = ({item,addItem,removeItem,removeWholeItem}) => {
+const Card = ({item,addItem,removeItem,removeWholeItem,trigger}) => {
   const [itemsCount,setItemsCount] = useState(item.amount)
-  const [hide,setHide] = useState(false)
-  const hideItem = ()=>{
-      setHide(true)
-  }
-   
- 
+  useEffect(()=>{
+      setItemsCount(item.amount)
+  },[trigger])
     return (
-        <article  className={`card items-center p-4 border lg:card-side bg-base-100  w-full justify-center gap-10 ${hide? 'hidden':''} `}>
+        <article  className={`card items-center p-4 border lg:card-side bg-base-100  w-full justify-center gap-10  `}>
             <MdOutlineCancel onClick={()=>{
-              removeWholeItem(item)
-              hideItem()
+              removeWholeItem(item,setItemsCount)
             }}  className={`absolute top-2 text-xl right-2 `}/>
           <figure className="w-[200px] h-[200px]">
           <Image

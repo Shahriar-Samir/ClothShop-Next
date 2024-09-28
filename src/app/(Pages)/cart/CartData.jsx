@@ -7,6 +7,7 @@ import Card from './Card'
 const CartData = () => {
     const [cart,setCart] = useState([])
     const [cartForPrice,setCartForPrice] = useState([])
+    const [trigger,setTrigger] = useState(false)
 
   useEffect(()=>{
       const cartData = JSON.parse(localStorage.getItem('cart'))
@@ -40,9 +41,9 @@ const addItem = (item,itemsCount,setItemsCount)=>{
     return new Date(a.position) - new Date(b.position)
   })
   setCart(newCart2)
-//   if(updateCart){
-//     updateCart(newCart2) 
-//   } 
+
+     updateCart(newCart2) 
+
   localStorage.setItem('cart',JSON.stringify(newCart2))
 
 }
@@ -63,9 +64,9 @@ const newCart = cart.map(product=>{
 const newCart2 = newCart.sort((a,b)=>{
 return new Date(a.position) - new Date(b.position)
 })
-//   if(updateCart){
-//     updateCart(newCart2) 
-//   } 
+
+    updateCart(newCart2) 
+
 return localStorage.setItem('cart',JSON.stringify(newCart2))
 }
 }
@@ -77,21 +78,26 @@ return localStorage.setItem('cart',JSON.stringify(newCart2))
   const newCart2 = newCart.sort((a,b)=>{
     return new Date(a.position) - new Date(b.position)
   })
+  updateCart(newCart2)
+  setCart(newCart2)
   localStorage.setItem('cart',JSON.stringify(newCart2))
+  setTrigger(!trigger)
   }
 
   const updateCart = (cartData)=>{
     return setCartForPrice(cartData)
   }
+  
+
 
     return (
         <>
         <section className='flex flex-col gap-5 w-2/4'>
         {cart.map(item=>{
-          return <Card key={item._key} addItem={addItem} removeItem={removeItem} removeWholeItem={removeWholeItem} item={item}/>
+          return <Card key={item._key} addItem={addItem} removeItem={removeItem} removeWholeItem={removeWholeItem} item={item} trigger={trigger}/>
         })}
         </section>
-        <PriceDetails cartData={cartForPrice} addItem={addItem} removeItem={removeItem}/>
+        <PriceDetails cartData={cartForPrice}/>
         </>
         
     );
