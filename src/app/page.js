@@ -31,8 +31,8 @@ const App =async () => {
   <div className="card-body">
     <h2 className="card-title">{item.productName}</h2>
     <p>{item.description}</p>
-    <div className="card-actions justify-end">
-      <Link href={`/shop/productDetails/${item._id}`}><button className="btn btn-primary">Details</button></Link>
+    <div className="card-actions justify-end w-full">
+      <Link href={`/shop/productDetails/${item._id}`} className="w-full"><button className="btn bg-blue-500 hover:bg-blue-600 text-white w-full">Details</button></Link>
     </div>
   </div>
 </article>})}
@@ -40,16 +40,13 @@ const App =async () => {
             <section className="mt-20 ">
             <h1 className='text-center text-2xl font-semibold'>About Us</h1>
             <div className="hero ">
-  <div className="hero-content items-start flex-col lg:flex-row-reverse">
+  <div className="hero-content items-start flex-col lg:flex-row-reverse gap-10">
     <Image
     width={1000}
     height={1000}
       src="/images/about.jpg"
-      className="w-[400px] h-full rounded-lg shadow-2xl" />
-    <div>
+      className="w-[400px] h-full rounded-lg shadow-2xl object-cover" />
     <p>At GentStyle, we believe that clothing is more than just fabric&mdash;it is an expression of personality, confidence, and individuality. Our passion is to help men look their best while feeling empowered in their own skin. Whether you are updating your wardrobe for work, planning an event, or just looking for something stylish yet comfortable, we are here to guide you every step of the way. Our team is dedicated to making shopping for mens fashion simple, seamless, and enjoyable. We offer expert advice to help you find the perfect fit and style, along with unparalleled customer service that ensures your satisfaction. Whether you shop online or in-store, our focus is always on providing you with an exceptional shopping experience. What sets us apart at GentStyle is our commitment to delivering not just great clothing but a lifestyle. We know that the modern man values comfort as much as style, and our collection is designed to meet the needs of a busy life without compromising on fashion. We partner with trusted designers and brands that share our dedication to quality and craftsmanship. From exclusive collections to seasonal must-haves, you will find everything you need to express your unique style at GentStyle. Our vision is to inspire men to embrace their individuality with confidence and sophistication, while ensuring that their wardrobe evolves with them. Step into GentStyle and elevate your wardrobe today. Discover the perfect balance of elegance, quality, and innovation&mdash;because every man deserves to look and feel his best.</p>
-
-    </div>
   </div>
 </div>
             </section>

@@ -25,8 +25,8 @@ const Shop = async () => {
   <div className="card-body">
     <h2 className="card-title">{item.productName}</h2>
     <p>{item.description}</p>
-    <div className="card-actions justify-end">
-      <Link href={`/shop/productDetails/${item._id}`}><button className="btn btn-primary">Purchase</button></Link>
+    <div className="card-actions justify-end w-full">
+      <Link href={`/shop/productDetails/${item._id}`} className="w-full"><button className="btn bg-blue-500 hover:bg-blue-600 text-white w-full">Details</button></Link>
     </div>
   </div>
 </article>})}

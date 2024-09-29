@@ -28,23 +28,23 @@ const SignIn = () => {
     return (
         <main className="w-full flex justify-center items-center h-[100vh]">
           <ToastContainer/>
-           <section className="bg-red-600 text-white p-5 w-[350px]">
-            <h1 className="text-2xl font-semibold text-center">Create a new account</h1>
-           <form className="card-body text-white" onSubmit={submit}>
+           <section className="bg-transparent rounded-lg text-blue-500 border border-blue-600 p-5 w-[350px]">
+            <h1 className="text-2xl font-semibold text-center">Sign In</h1>
+           <form className="card-body text-blue-500" onSubmit={submit}>
         <div className="form-control">
           <label className="label">
-            <span className="label-text text-white">Email</span>
+            <span className="label-text text-blue-500">Email</span>
           </label>
-          <input type="email" name='email' placeholder="email" className="input input-bordered bg-transparent border-white" required />
+          <input type="email" name='email' placeholder="email" className="input input-bordered bg-transparent " required />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text text-white">Password</span>
+            <span className="label-text text-blue-500">Password</span>
           </label>
-          <input type="password" name='pass' placeholder="password" className="input input-bordered bg-transparent border-white"   required />
+          <input type="password" name='pass' placeholder="password" className="input input-bordered bg-transparent "   required />
         </div>
         <div className="form-control mt-6">
-          <button className="btn bg-transparent text-white">Login</button>
+          <button className="btn bg-transparent text-blue-500 hover:bg-blue-500 hover:text-white">Login</button>
         </div>
       </form>
             </section>

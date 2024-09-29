@@ -9,7 +9,7 @@ const Navbar = async () => {
   const session = await getServerSession(authOptions)
   
     return (
-        <header className='w-full py-2 bg-red-600 text-white'>
+        <header className='w-full py-2 bg-blue-500 text-white'>
             <nav className="navbar p-0 mx-auto w-11/12">
         <div className="navbar-start">
           <div className="dropdown">
