@@ -17,7 +17,8 @@ const authOptions = {
                 password:{}
             },
             async authorize (credentials){
-               const db = await connectDB()
+                const client =await connectDB()
+                const db = client.db('GentStyle')
                const userCollection = db.collection('users')
                const {email,pass} = credentials
                 if(!email || !pass){
