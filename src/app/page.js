@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic"
 const App =async () => {
   const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/featured`)
   const products = await res.data
-  return (
+  return (  
     <main className='w-full '>
         <header className='w-full  bg-[url("/images/banner.jpg")]  h-[90vh] bg-cover text-white flex justify-center flex-col items-end relative'>
       

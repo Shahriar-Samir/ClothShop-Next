@@ -11,8 +11,8 @@ const Shop = async () => {
 
     return (
         <main className='w-full'>
-            <h1 className='mt-5 text-center text-2xl'>All Products</h1>
-            <section className='grid grid-cols-3 w-11/12 mx-auto max-w-[1000px] gap-10 mt-10'>
+            <h1 className='mt-5 text-center text-2xl font-semibold'>All Products</h1>
+            <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto max-w-[1000px] gap-10 mt-10'>
             {products.map(item=>{
                     return   <article key={item._id} className="card bg-base-100 shadow-xl">
   <figure>
