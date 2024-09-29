@@ -12,7 +12,7 @@ const connectDB = async () => {
               strict: true,
               deprecationErrors: true,
             },
-            maxPoolSize: 50,    
+            maxPoolSize: 25,    
             minPoolSize: 5,     
             maxIdleTimeMS: 30000,
        

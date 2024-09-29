@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -49,9 +50,12 @@ const Signup = () => {
           <input type="password" name='pass' placeholder="password" className="input input-bordered bg-transparent "   required />
         </div>
         <div className="form-control mt-6">
-          <button className="btn bg-transparent text-blue-500 hover:bg-blue-500 hover:text-white">Login</button>
+          <button className="btn bg-transparent text-blue-500 hover:bg-blue-500 hover:text-white">Sign Up</button>
         </div>
       </form>
+      <div className="w-full flex justify-center">
+      <Link href='/signin' className='underline text-center'>Login</Link>
+      </div>
             </section>
         </main>
     );

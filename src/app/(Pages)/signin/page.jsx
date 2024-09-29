@@ -1,6 +1,7 @@
 'use client'
 
 import {signIn} from 'next-auth/react'
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -47,6 +48,9 @@ const SignIn = () => {
           <button className="btn bg-transparent text-blue-500 hover:bg-blue-500 hover:text-white">Login</button>
         </div>
       </form>
+     <div className='w-full flex justify-center'>
+     <Link href='/signup' className='underline text-center'>Create an account</Link>
+     </div>
             </section>
         </main>
     );

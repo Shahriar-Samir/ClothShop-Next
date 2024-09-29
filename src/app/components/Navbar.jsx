@@ -29,21 +29,21 @@ const Navbar = async () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-              <li><Link href='/'>Home</Link></li>
-              <li><Link href='/shop'>Shop</Link></li>
-              <li><Link href='/cart'>Cart</Link></li>
+              className="menu menu-sm dropdown-content bg-blue-500 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <li><Link href='/' className='hover:underline'>Home</Link></li>
+              <li><Link href='/shop' className='hover:underline'>Shop</Link></li>
+              <li><Link href='/cart' className='hover:underline'>Cart</Link></li>
             </ul>
           </div>
-          <Link href='/' className="btn btn-ghost text-xl p-0">
+          <Link href='/' className="btn btn-ghost hover:cursor-pointer hover:bg-transparent bg-transparent text-xl p-0">
           <Image width={50} height={50} src='/icons/shirt.png'/>
           GentStyle</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="flex gap-5 px-1">
-          <li><Link href='/'>Home</Link></li>
-              <li><Link href='/shop'>Shop</Link></li>
-              <li><Link href='/cart'>Cart</Link></li>
+          <li><Link href='/' className='hover:underline'>Home</Link></li>
+              <li><Link href='/shop' className='hover:underline'>Shop</Link></li>
+              <li><Link href='/cart' className='hover:underline'>Cart</Link></li>
           </ul>
         </div>
         <div className="navbar-end">
