@@ -1,11 +1,14 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials'
 import connectDB from "../../../../lib/connectDB";
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
+
 
 const authOptions = {
     session:{
         strategy:'jwt',
     },
+    adapter: MongoDBAdapter(connectDB),
     secret:process.env.NEXTAUTH_SECRET,
     providers:[
         CredentialsProvider({

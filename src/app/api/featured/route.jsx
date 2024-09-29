@@ -4,7 +4,8 @@ import connectDB from '../../../lib/connectDB'
 
 const GET =async () => {
    try{
-    const db = await connectDB()
+    const client =await connectDB()
+    const db = client.db('GentStyle')
     const productsCollection = db.collection('products')
     const getProducts = await productsCollection.find().sort({price:-1}).limit(3).toArray()
     if(getProducts.length>0){

@@ -7,7 +7,8 @@ const GET =async (req) => {
     const params = new URLSearchParams(url.searchParams)
 
     try{
-        const db =await connectDB()
+        const client =await connectDB()
+        const db = client.db('GentStyle')
         const productsCollection = db.collection('products')
         const id = new ObjectId(params.get('id'))
         const product = await productsCollection.findOne({_id:id})

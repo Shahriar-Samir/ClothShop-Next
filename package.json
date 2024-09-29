@@ -9,11 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^3.5.3",
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.5.0",
     "axios": "^1.7.7",
     "e-commerce": "file:",
-    "mongodb": "^6.8.1",
+    "mongodb": "^6.9.0",
     "next": "14.2.8",
     "next-auth": "^4.24.7",
     "react": "^18.3.1",

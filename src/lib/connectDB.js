@@ -12,13 +12,9 @@ const connectDB = async () => {
               strict: true,
               deprecationErrors: true,
             },
-            maxPoolSize: 25,    
-            minPoolSize: 5,     
-            maxIdleTimeMS: 30000,
        
           });
-          db = client.db('GentStyle')
-          return db
+          return client
     }
     finally {
       // Ensures that the client will close when you finish/error
