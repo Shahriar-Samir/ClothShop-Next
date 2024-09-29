@@ -15,16 +15,16 @@ const ProductDetails = async ({params}) => {
 
     return (
         <main className='mt-10 mx-auto w-11/12 max-w-[1200px]'>
-            <section className="card lg:card-side rounded-none h-[450px] gap-20">
-  <figure className='w-1/3 rounded-none'>
+            <section className="card lg:card-side rounded-none gap-5 md:flex-row md:gap-5 lg:gap-20">
+  <figure className='mx-auto max-w-[300px] md:max-w-[1000px] md:w-1/3 rounded-none'>
     <Image
       width={1000}
       height={1000}
-      className='w-full h-full '
+      className='w-full h-full object-cover'
       src={productData.imageURL}
       alt={productData.productName} />
   </figure>
-  <div className="card-body w-1/2 gap-3 flex flex-col">
+  <div className="card-body md:w-1/2 gap-3 flex flex-col">
     <h2 className="font-bold text-2xl">{productData.productName}</h2>
     <h2 className="font-semibold text-lg">Description: {productData.description}</h2>
     <h2 className='text-lg font-semibold'>Category: {productData.category}</h2>
@@ -34,7 +34,7 @@ const ProductDetails = async ({params}) => {
     <h2 className='text-2xl font-bold text-yellow-500'>${productData.price}</h2>
     <div className="card-actions gap-2 flex-col">
     <CartBtns productData={productData} cartPage={false} uid={uid} ></CartBtns>
-     <Link href='/cart' className="btn bg-blue-500 text-white hover:bg-blue-600 w-[300px]" >Go to Cart</Link>
+     <Link href='/cart' className="btn bg-blue-500 text-white hover:bg-blue-600 w-full" >Go to Cart</Link>
    </div>
 
   </div>
