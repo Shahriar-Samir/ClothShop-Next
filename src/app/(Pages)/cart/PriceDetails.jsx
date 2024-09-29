@@ -20,7 +20,7 @@ const PriceDetails = ({cartData}) => {
     },[cartData])
 
     return (
-        <aside className='w-1/4'>
+        <aside className='w-11/12 mx-auto max-w-[300px] md:w-1/4'>
         <div className="w-full border py-3">
           <h1 className='text-center text-lg font-semibold'>Price Details</h1>
 <table className="table w-full mt-2">

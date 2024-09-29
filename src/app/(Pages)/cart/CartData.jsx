@@ -92,12 +92,12 @@ return localStorage.setItem(uid,JSON.stringify({uid:uid,cart:newCart2}))
 
     return (
         <>
-        {cart && cart?.cart?.length>0?  <section className='flex flex-col gap-5 w-2/4'>
+        {cart && cart?.cart?.length>0?  <section className='grid grid-cols-1 gap-5 mx-auto w-11/12 md:w-2/4'>
         {cart.cart.map(item=>{
           return <Card key={item._key} addItem={addItem} removeItem={removeItem} removeWholeItem={removeWholeItem} item={item} trigger={trigger} uid={uid}/>
         })}
         </section>:
-        <section className='w-2/4 flex justify-center items-center'>
+        <section className='md:w-2/4 flex justify-center items-center'>
         <p className='text-lg font-semibold'>Cart is empty</p>
 
         </section>
