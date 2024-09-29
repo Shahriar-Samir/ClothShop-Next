@@ -18,7 +18,7 @@ const SignIn = () => {
               toast.error('Email or password is incorrect')
             }
             if(!res.error){
-              router.push('/')
+              router.refresh()
             }
           }
           catch(err){

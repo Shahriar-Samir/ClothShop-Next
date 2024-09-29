@@ -21,7 +21,7 @@ const Signup = () => {
           if(res){
             const res2 = await signIn('credentials',{email,pass,redirect: false})
             if(res2.status === 200){
-                router.push('/')
+              router.refresh()
             }
           }
           }

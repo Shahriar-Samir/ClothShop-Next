@@ -10,6 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 export const metadata = {
   title: "GentStyle",
   description: "Home page of GentStyle",
+  icons:{
+    icon:'/icons/shirt.png'
+  }
 };
 
 export default function RootLayout({ children }) {
